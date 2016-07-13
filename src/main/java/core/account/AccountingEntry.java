@@ -5,19 +5,19 @@ import core.transaction.AccountingTransaction;
 
 import java.math.BigDecimal;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
+import static com.google.common.base.Preconditions.*;
 
 /**
  * Represents an Accounting Entry.
  * The transaction reference is set automatically when an AccountingEntry is passed to the transaction constructor.
+ * Once the transaction is set, it can't be changed.
  */
 public final class AccountingEntry {
     final private BigDecimal amount;
     final private AccountSide accountSide;
     final private String accountNumber;
     private AccountingTransaction transaction;
+    // Indicates if the transaction was set
     private boolean freeze = false;
 
     public AccountingEntry(BigDecimal amount, String accountNumber, AccountSide accountSide) {

@@ -1,13 +1,12 @@
 import com.google.common.collect.Sets;
-import core.account.AccountSide;
 import core.account.AccountingEntry;
 import core.transaction.AccountingTransaction;
-import core.transaction.AccountingTransactionBuilder;
 import org.junit.Test;
 
 import java.math.BigDecimal;
 
-import static core.account.AccountSide.*;
+import static core.account.AccountSide.CREDIT;
+import static core.account.AccountSide.DEBIT;
 
 public class AccountingEntryTest {
 

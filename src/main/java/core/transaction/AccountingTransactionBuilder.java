@@ -3,6 +3,7 @@ package core.transaction;
 import core.account.AccountSide;
 import core.account.AccountingEntry;
 
+import javax.annotation.Nullable;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.HashSet;
@@ -13,11 +14,11 @@ public class AccountingTransactionBuilder {
     final private Set<AccountingEntry> entries = new HashSet<>();
     final private Map<String, String> info;
 
-    private AccountingTransactionBuilder(Map<String, String> info) {
+    private AccountingTransactionBuilder(@Nullable Map<String, String> info) {
         this.info = info;
     }
 
-    public static AccountingTransactionBuilder create(Map<String, String>  info) {
+    public static AccountingTransactionBuilder create(@Nullable Map<String, String>  info) {
         return new AccountingTransactionBuilder(info);
     }
 
@@ -36,7 +37,6 @@ public class AccountingTransactionBuilder {
     }
 
     public AccountingTransaction build() {
-        AccountingTransaction t = new AccountingTransaction(entries, info, Instant.now().toEpochMilli());
-        return t;
+        return new AccountingTransaction(entries, info, Instant.now().toEpochMilli());
     }
 }

@@ -11,7 +11,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Represents an immutable collection of available account descriptions.
+ * Represents an immutable collection of available accounts.
  */
 public class ChartOfAccounts {
     private final Map<String, AccountDetails> accountNumberToAccountDetails;

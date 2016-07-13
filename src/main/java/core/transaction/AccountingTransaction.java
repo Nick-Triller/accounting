@@ -3,6 +3,7 @@ package core.transaction;
 import core.account.AccountSide;
 import core.account.AccountingEntry;
 
+import javax.annotation.Nullable;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.*;
@@ -18,7 +19,7 @@ public class AccountingTransaction {
     final private long bookingDateTimestamp;
     final private Map<String, String> info;
 
-    public AccountingTransaction(Set<AccountingEntry> entries, Map<String, String> info, long bookingDateTimestamp) {
+    public AccountingTransaction(Set<AccountingEntry> entries, @Nullable Map<String, String> info, long bookingDateTimestamp) {
         if (info == null) info = new HashMap<>();
         this.info = info;
         this.entries = checkNotNull(entries);
@@ -59,7 +60,9 @@ public class AccountingTransaction {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Transaction " + Instant.ofEpochMilli(bookingDateTimestamp).toString() + "\n");
+        sb.append("Transaction ")
+                .append(Instant.ofEpochMilli(bookingDateTimestamp).toString())
+                .append("\n");
         entries.stream().forEach(e -> sb.append(e).append("\n"));
         return sb.toString();
     }

@@ -9,6 +9,7 @@ import core.chartofaccounts.ChartOfAccounts;
 import core.transaction.AccountingTransaction;
 import core.transaction.AccountingTransactionBuilder;
 
+import javax.annotation.Nullable;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,22 +27,22 @@ final public class Ledger {
     public Ledger(ChartOfAccounts coa) {
         this.coa = coa;
         // Create coa accounts
-        coa.getAccountNumberToAccountDetails().values().forEach(ad -> addAccount(ad));
+        coa.getAccountNumberToAccountDetails().values().forEach(this::addAccount);
     }
 
     public Ledger(Journal journal, ChartOfAccounts coa) {
         this(coa);
         // Add transactions
-        journal.getTransactions().forEach(t -> this.commitTransaction(t));
+        journal.getTransactions().forEach(this::commitTransaction);
     }
 
-    public AccountingTransactionBuilder createTransaction(Map<String, String> info) {
+    public AccountingTransactionBuilder createTransaction(@Nullable Map<String, String> info) {
         return AccountingTransactionBuilder.create(info);
     }
 
     public void commitTransaction(AccountingTransaction transaction) {
         // Add entries to accounts
-        transaction.getEntries().forEach(e -> this.addAccountEntry(e));
+        transaction.getEntries().forEach(this::addAccountEntry);
         journal.addTransaction(transaction);
     }
 

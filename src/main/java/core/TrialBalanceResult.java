@@ -15,7 +15,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * This class describes a ledger's accounts with their corresponding balances at a specific moment in time.
+ * Describes a ledger's accounts with their corresponding balances at a specific moment in time.
  */
 public class TrialBalanceResult {
     final private Map<AccountDetails, BigDecimal> accountDetailsToBalance =
@@ -32,7 +32,7 @@ public class TrialBalanceResult {
         creationTimestamp = Instant.now().toEpochMilli();
         BigDecimal balance = BigDecimal.ZERO;
         accounts.forEach(a -> balance.add(a.getBalance()));
-        isBalanced = balance == BigDecimal.ZERO ? true : false;
+        isBalanced = balance.equals(BigDecimal.ZERO);
     }
 
     public Map<AccountDetails, BigDecimal> getAccountDetailsToBalance() {

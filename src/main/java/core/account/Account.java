@@ -9,7 +9,9 @@ import java.util.List;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-
+/**
+ * Represents an account with entries.
+ */
 final public class Account {
     final private List<AccountingEntry> entries = new ArrayList<>();
     final private AccountDetails accountDetails;
@@ -22,6 +24,10 @@ final public class Account {
         this.accountDetails = new AccountDetails(accountNumber, name, increaseSide);
     }
 
+    /**
+     * Adds an entry to the account.
+     * @param entry A debit or credit entry
+     */
     public void addEntry(AccountingEntry entry) {
         checkNotNull(entry);
         checkArgument(entry.getAccountNumber().equals(accountDetails.getAccountNumber()));
