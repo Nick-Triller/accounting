@@ -1,0 +1,4 @@
+@ParametersAreNonnullByDefault
+package core.chartofaccounts;
+
+import javax.annotation.ParametersAreNonnullByDefault;
