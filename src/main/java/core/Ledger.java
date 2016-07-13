@@ -13,6 +13,8 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.google.common.base.Preconditions.checkArgument;
+
 /**
  * Represents a set of accounts and their transactions.
  */
@@ -56,8 +58,10 @@ final public class Ledger {
     }
 
     private void addAccount(AccountDetails accountDetails) {
-        if (accountNumberToAccount.containsKey(accountDetails.getAccountNumber()))
-            throw new IllegalArgumentException();
+        String newAccountNumber = accountDetails.getAccountNumber();
+        boolean accountNumberNotInUse = !accountNumberToAccount.containsKey(newAccountNumber);
+        checkArgument(accountNumberNotInUse,
+                "An account with the account number %s exists already in the ledger", newAccountNumber);
         accountNumberToAccount.put(accountDetails.getAccountNumber(), new Account(accountDetails));
     }
 
