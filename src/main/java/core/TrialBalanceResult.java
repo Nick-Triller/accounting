@@ -11,6 +11,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * This class describes a ledger's accounts with their corresponding balances at a specific moment in time.
  */
@@ -21,8 +24,8 @@ public class TrialBalanceResult {
     final private boolean isBalanced;
 
     public TrialBalanceResult(Set<Account> accounts) {
-        if (accounts == null || accounts.isEmpty())
-            throw new IllegalArgumentException();
+        checkNotNull(accounts);
+        checkArgument(!accounts.isEmpty());
         accounts.forEach(
                 a -> accountDetailsToBalance.put(a.getAccountDetails(), a.getBalance())
         );
