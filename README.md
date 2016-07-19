@@ -1,5 +1,5 @@
 #Accounting
-Accounting is an in-memory double-entry bookkeeping library.
+Accounting is an in-memory double-entry bookkeeping component written in Java.
 
 ## Usage example
 ```Java
