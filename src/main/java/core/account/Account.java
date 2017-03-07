@@ -21,7 +21,7 @@ final public class Account {
     }
 
     public Account(String accountNumber, String name, AccountSide increaseSide) {
-        this.accountDetails = new AccountDetails(accountNumber, name, increaseSide);
+        this.accountDetails = new AccountDetailsImpl(accountNumber, name, increaseSide);
     }
 
     /**
