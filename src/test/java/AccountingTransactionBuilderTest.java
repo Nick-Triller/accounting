@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 
 public class AccountingTransactionBuilderTest {
@@ -30,9 +31,9 @@ public class AccountingTransactionBuilderTest {
         Assert.assertEquals(new BigDecimal(35), getEntryById(t, liabilitiesAccountNumber).getAmount());
     }
 
-    final private AccountingEntry getEntryById(AccountingTransaction t, String accountId) {
+    private AccountingEntry getEntryById(AccountingTransaction t, String accountId) {
         return t.getEntries().stream()
-                .filter(e -> e.getAccountNumber() == accountId)
+                .filter(e -> Objects.equals(e.getAccountNumber(), accountId))
                 .findFirst().get();
     }
 }

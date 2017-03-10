@@ -1,6 +1,7 @@
 package core.chartofaccounts;
 
 import core.account.AccountDetails;
+import core.account.AccountDetailsImpl;
 import core.account.AccountSide;
 
 import java.util.HashSet;
@@ -17,7 +18,7 @@ public class ChartOfAccountsBuilder {
     }
 
     public ChartOfAccountsBuilder addAccount(String accountNumber, String name, AccountSide increaseSide) {
-        AccountDetails accountDetails = new AccountDetails(accountNumber, name, increaseSide);
+        AccountDetails accountDetails = new AccountDetailsImpl(accountNumber, name, increaseSide);
         this.accountDetails.add(accountDetails);
         return this;
     }
