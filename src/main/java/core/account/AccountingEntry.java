@@ -2,6 +2,7 @@ package core.account;
 
 import com.google.common.base.MoreObjects;
 import core.transaction.AccountingTransaction;
+import lombok.Getter;
 
 import java.math.BigDecimal;
 
@@ -13,9 +14,16 @@ import static com.google.common.base.Preconditions.*;
  * Once the transaction is set, it can't be changed.
  */
 public final class AccountingEntry {
+
+    @Getter
     final private BigDecimal amount;
+
+    @Getter
     final private AccountSide accountSide;
+
+    @Getter
     final private String accountNumber;
+
     private AccountingTransaction transaction;
     // Indicates if the transaction was set
     private boolean freeze = false;
@@ -47,18 +55,6 @@ public final class AccountingEntry {
         checkNotNull(transaction);
         this.transaction = transaction;
         freeze = true;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public String getAccountNumber() {
-        return accountNumber;
-    }
-
-    public AccountSide getAccountSide() {
-        return accountSide;
     }
 
     @Override

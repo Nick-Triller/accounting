@@ -1,6 +1,7 @@
 package core.account;
 
 import com.google.common.base.MoreObjects;
+import lombok.Getter;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -14,6 +15,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 final public class Account {
     final private List<AccountingEntry> entries = new ArrayList<>();
+
+    @Getter
     final private AccountDetails accountDetails;
 
     public Account(AccountDetails accountDetails) {
@@ -52,10 +55,6 @@ final public class Account {
         return entries.stream()
                 .map(e -> e.getAccountSide() == AccountSide.DEBIT ? e.getAmount() : e.getAmount().negate())
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
-    }
-
-    public AccountDetails getAccountDetails() {
-        return accountDetails;
     }
 
     @Override
