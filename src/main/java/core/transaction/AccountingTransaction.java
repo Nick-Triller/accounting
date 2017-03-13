@@ -2,6 +2,7 @@ package core.transaction;
 
 import core.account.AccountSide;
 import core.account.AccountingEntry;
+import lombok.Getter;
 
 import javax.annotation.Nullable;
 import java.math.BigDecimal;
@@ -16,10 +17,15 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public class AccountingTransaction {
     final private Set<AccountingEntry> entries;
+
     final private long bookingDateTimestamp;
+
+    @Getter
     final private Map<String, String> info;
 
-    public AccountingTransaction(Set<AccountingEntry> entries, @Nullable Map<String, String> info, long bookingDateTimestamp) {
+    public AccountingTransaction(Set<AccountingEntry> entries,
+                                 @Nullable Map<String, String> info,
+                                 long bookingDateTimestamp) {
         if (info == null) info = new HashMap<>();
         this.info = info;
         this.entries = checkNotNull(entries);
@@ -39,22 +45,13 @@ public class AccountingTransaction {
     }
 
     public boolean isBalanced() {
-        BigDecimal debits = entries.stream().map(e -> {
-            return e.getAccountSide() == AccountSide.DEBIT ? e.getAmount() : e.getAmount().negate();
-        }).reduce(BigDecimal.ZERO, BigDecimal::add);
+        BigDecimal debits = entries.stream().map(e -> e.getAccountSide() == AccountSide.DEBIT ?
+                e.getAmount() : e.getAmount().negate()).reduce(BigDecimal.ZERO, BigDecimal::add);
         return debits.compareTo(BigDecimal.ZERO) == 0;
     }
 
     public List<AccountingEntry> getEntries() {
         return new ArrayList<>(entries);
-    }
-
-    public Map<String, String> getInfo() {
-        return info;
-    }
-
-    public long getBookingDateTimestamp() {
-        return bookingDateTimestamp;
     }
 
     @Override
