@@ -8,6 +8,7 @@ import core.account.AccountingEntry;
 import core.chartofaccounts.ChartOfAccounts;
 import core.transaction.AccountingTransaction;
 import core.transaction.AccountingTransactionBuilder;
+import lombok.Getter;
 
 import javax.annotation.Nullable;
 import java.math.BigDecimal;
@@ -21,6 +22,8 @@ import static com.google.common.base.Preconditions.checkArgument;
  */
 final public class Ledger {
     final private HashMap<String, Account> accountNumberToAccount = new HashMap<>();
+
+    @Getter
     final private Journal journal = new Journal();
     final private ChartOfAccounts coa;
 
@@ -48,10 +51,6 @@ final public class Ledger {
 
     public TrialBalanceResult computeTrialBalance() {
         return new TrialBalanceResult(Sets.newHashSet(accountNumberToAccount.values()));
-    }
-
-    public Journal getJournal() {
-        return journal;
     }
 
     public BigDecimal getAccountBalance(String accountNumber) {
