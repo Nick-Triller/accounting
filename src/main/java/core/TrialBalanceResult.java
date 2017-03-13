@@ -6,7 +6,6 @@ import core.account.AccountDetails;
 
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -33,10 +32,6 @@ public class TrialBalanceResult {
         BigDecimal balance = BigDecimal.ZERO;
         accounts.forEach(a -> balance.add(a.getBalance()));
         isBalanced = balance.equals(BigDecimal.ZERO);
-    }
-
-    public Map<AccountDetails, BigDecimal> getAccountDetailsToBalance() {
-        return new HashMap<>(accountDetailsToBalance);
     }
 
     @Override
