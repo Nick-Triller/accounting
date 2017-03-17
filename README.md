@@ -1,4 +1,4 @@
-#Accounting
+# Accounting
 Accounting is an in-memory double-entry bookkeeping component written in Java.
 
 ## Usage example
@@ -27,6 +27,10 @@ ledger.commitTransaction(t);
 // Print ledger
 System.out.println(ledger.toString());
 ```
+
+## Setup
+
+Accounting uses [lombok](https://projectlombok.org/) to reduce getter and setter code clutter.
 
 ## License
 
