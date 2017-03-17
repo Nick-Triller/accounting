@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Nick-Triller/accounting.svg?branch=master)](https://travis-ci.org/Nick-Triller/accounting)
+
 # Accounting
 Accounting is an in-memory double-entry bookkeeping component written in Java.
 
