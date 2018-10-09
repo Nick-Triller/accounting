@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Nick-Triller/accounting.svg?branch=master)](https://travis-ci.org/Nick-Triller/accounting)
+-[![Build Status](https://travis-ci.org/Nick-Triller/accounting.svg?branch=master)](https://travis-ci.org/Nick-Triller/accounting)
 
 # Accounting
 Accounting is an in-memory double-entry bookkeeping component written in Java.
@@ -33,6 +33,20 @@ System.out.println(ledger.toString());
 ## Setup
 
 Accounting uses [lombok](https://projectlombok.org/) to reduce getter and setter code clutter.
+
+## Glossary
+
+This section explains some terms as they are used in the API.
+
+| Term              | Description                                 |
+| ----------------- |:-------------------------------------------:|
+| Ledger            | All accounts and transactions.              |
+| Journal           | A record of all financial transactions.     |
+| Chart of accounts | All available accounts.                     |
+| Account           | A T-account with debit and credit entries.  |
+| Account entry     | A debit or credit entry.                    |
+| Transaction       | A group of related account entries.         |
+| Trial balance     | A statement of all debits and credits.      |
 
 ## License
 
