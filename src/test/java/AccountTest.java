@@ -1,7 +1,9 @@
 import core.account.Account;
 import core.account.AccountingEntry;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
 
@@ -10,12 +12,15 @@ import static core.account.AccountSide.DEBIT;
 
 public class AccountTest {
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testInvalidAccountNumber() {
         // Arrange
         Account cash = new Account("000001", "Cash", DEBIT);
-        // Act + Assert
-        cash.addEntry(new AccountingEntry(new BigDecimal(50), "WRONG-ACCOUNT-NUMBER", DEBIT));
+        AccountingEntry entry = new AccountingEntry(new BigDecimal(50), "WRONG-ACCOUNT-NUMBER", DEBIT);
+        // Act
+        Executable act = () -> cash.addEntry(entry);
+        // Assert
+        assertThrows(IllegalArgumentException.class, act);
     }
 
     @Test
@@ -35,8 +40,8 @@ public class AccountTest {
         loan.addEntry(e2);
 
         // Assert
-        Assert.assertEquals(new BigDecimal(50), cash.getBalance());
-        Assert.assertEquals(new BigDecimal(50), loan.getBalance());
+        assertEquals(new BigDecimal(50), cash.getBalance());
+        assertEquals(new BigDecimal(50), loan.getBalance());
     }
 
     @Test
@@ -55,7 +60,7 @@ public class AccountTest {
         checking.addEntry(e2);
 
         // Assert
-        Assert.assertEquals(new BigDecimal(50), cash.getBalance());
-        Assert.assertEquals(new BigDecimal(-50), checking.getBalance());
+        assertEquals(new BigDecimal(50), cash.getBalance());
+        assertEquals(new BigDecimal(-50), checking.getBalance());
     }
 }

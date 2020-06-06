@@ -1,8 +1,9 @@
 import core.account.AccountingEntry;
 import core.transaction.AccountingTransaction;
 import core.transaction.AccountingTransactionBuilder;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -26,9 +27,9 @@ public class AccountingTransactionBuilderTest {
                 .build();
 
         // Assert
-        Assert.assertEquals(new BigDecimal(10), getEntryById(t, cashAccountNumber).getAmount());
-        Assert.assertEquals(new BigDecimal(25), getEntryById(t, checkingAccountNumber).getAmount());
-        Assert.assertEquals(new BigDecimal(35), getEntryById(t, liabilitiesAccountNumber).getAmount());
+        assertEquals(new BigDecimal(10), getEntryById(t, cashAccountNumber).getAmount());
+        assertEquals(new BigDecimal(25), getEntryById(t, checkingAccountNumber).getAmount());
+        assertEquals(new BigDecimal(35), getEntryById(t, liabilitiesAccountNumber).getAmount());
     }
 
     private AccountingEntry getEntryById(AccountingTransaction t, String accountId) {

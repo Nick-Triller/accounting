@@ -4,8 +4,9 @@ import core.chartofaccounts.ChartOfAccounts;
 import core.chartofaccounts.ChartOfAccountsBuilder;
 import core.transaction.AccountingTransaction;
 import core.transaction.AccountingTransactionBuilder;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
 
@@ -45,9 +46,9 @@ public class LedgerTest {
         Ledger ledger = new Ledger(journal, coa);
 
         //Assert
-        Assert.assertEquals(new BigDecimal(-222), ledger.getAccountBalance(cashAccountNumber));
-        Assert.assertEquals(new BigDecimal(333), ledger.getAccountBalance(checkingAccountNumber));
-        Assert.assertEquals(new BigDecimal(111), ledger.getAccountBalance(liabilitiesAccountNumber));
+        assertEquals(new BigDecimal(-222), ledger.getAccountBalance(cashAccountNumber));
+        assertEquals(new BigDecimal(333), ledger.getAccountBalance(checkingAccountNumber));
+        assertEquals(new BigDecimal(111), ledger.getAccountBalance(liabilitiesAccountNumber));
     }
 
     @Test
