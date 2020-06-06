@@ -39,6 +39,7 @@ public final class AccountingEntry {
     /**
      * Gets the associated transaction.
      * Throws a NullPointerException if no transaction is associated.
+     *
      * @return Associated transaction
      */
     public AccountingTransaction getTransaction() {
@@ -48,6 +49,7 @@ public final class AccountingEntry {
 
     /**
      * This setter is required to enable circular references between entries and transactions.
+     *
      * @param transaction The transaction belonging to this entry
      */
     public void setTransaction(AccountingTransaction transaction) {

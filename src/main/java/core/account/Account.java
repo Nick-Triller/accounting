@@ -29,6 +29,7 @@ final public class Account {
 
     /**
      * Adds an entry to the account.
+     *
      * @param entry A debit or credit entry
      */
     public void addEntry(AccountingEntry entry) {
@@ -39,6 +40,7 @@ final public class Account {
 
     /**
      * Returns the debit/credit balance with consideration of the increase side
+     *
      * @return Balance
      */
     public BigDecimal getBalance() {
@@ -49,6 +51,7 @@ final public class Account {
 
     /**
      * Returns the debit/credit balance without consideration of the increase side
+     *
      * @return Balance
      */
     public BigDecimal getRawBalance() {

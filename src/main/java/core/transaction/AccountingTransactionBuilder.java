@@ -18,7 +18,7 @@ public class AccountingTransactionBuilder {
         this.info = info;
     }
 
-    public static AccountingTransactionBuilder create(@Nullable Map<String, String>  info) {
+    public static AccountingTransactionBuilder create(@Nullable Map<String, String> info) {
         return new AccountingTransactionBuilder(info);
     }
 

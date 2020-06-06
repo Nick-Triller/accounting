@@ -3,10 +3,10 @@ import core.transaction.AccountingTransaction;
 import core.transaction.AccountingTransactionBuilder;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.math.BigDecimal;
 import java.util.Objects;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class AccountingTransactionBuilderTest {
