@@ -5,6 +5,7 @@ import core.chartofaccounts.ChartOfAccountsBuilder;
 import core.transaction.AccountingTransaction;
 import core.transaction.AccountingTransactionBuilder;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -53,7 +54,27 @@ public class LedgerTest {
 
     @Test
     public void testJournalTransactionAccountMissingInCoa() {
-        // TODO
-    }
+        // Arrange
+        String cashAccountNumber = "000001";
+        String checkingAccountNumber = "000002";
 
+        ChartOfAccounts coa = ChartOfAccountsBuilder.create()
+                .addAccount(cashAccountNumber, "Cash", DEBIT)
+                .build();
+        Journal journal = new Journal();
+
+        // Deposit cash in the bank
+        AccountingTransaction t1 = AccountingTransactionBuilder.create()
+                // checkingAccountNumber not in COA
+                .debit(new BigDecimal(222), checkingAccountNumber)
+                .credit(new BigDecimal(222), cashAccountNumber)
+                .build();
+        journal.addTransaction(t1);
+
+        // Act
+        Executable act = () -> new Ledger(journal, coa);
+
+        // Assert
+        assertThrows(IllegalStateException.class, act);
+    }
 }

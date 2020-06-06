@@ -66,7 +66,11 @@ final public class Ledger {
     }
 
     private void addAccountEntry(AccountingEntry entry) {
-        accountNumberToAccount.get(entry.getAccountNumber()).addEntry(entry);
+        var account = accountNumberToAccount.get(entry.getAccountNumber());
+        if (account == null) {
+            throw new IllegalStateException("Entry references missing account");
+        }
+        account.addEntry(entry);
     }
 
     @Override
