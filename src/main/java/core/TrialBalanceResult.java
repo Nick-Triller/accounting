@@ -3,6 +3,7 @@ package core;
 import com.google.common.base.MoreObjects;
 import core.account.Account;
 import core.account.AccountDetails;
+import lombok.Getter;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -20,6 +21,7 @@ public class TrialBalanceResult {
     final private Map<AccountDetails, BigDecimal> accountDetailsToBalance =
             new TreeMap<>((o1, o2) -> o1.getAccountNumber().compareTo(o2.getAccountNumber()));
     final private long creationTimestamp;
+    @Getter
     final private boolean isBalanced;
 
     public TrialBalanceResult(Set<Account> accounts) {
