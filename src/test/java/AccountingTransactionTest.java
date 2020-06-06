@@ -1,7 +1,10 @@
 import core.account.AccountSide;
 import core.account.AccountingEntry;
 import core.transaction.AccountingTransaction;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -19,14 +22,16 @@ public class AccountingTransactionTest {
         AccountingTransaction t = new AccountingTransaction(entries);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testUnbalanced() {
         // Arrange
         Set<AccountingEntry> entries = new HashSet<>();
         entries.add(new AccountingEntry(new BigDecimal(10), "Cash", AccountSide.DEBIT));
         entries.add(new AccountingEntry(new BigDecimal(50), "Liabilities", AccountSide.CREDIT));
-        // Act + Assert
-        AccountingTransaction t = new AccountingTransaction(entries);
+        // Act
+        Executable act = () -> new AccountingTransaction(entries);
+        // Assert
+        assertThrows(IllegalArgumentException.class, act);
     }
 
     public void testInfo() {
