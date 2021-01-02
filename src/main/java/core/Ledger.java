@@ -25,6 +25,7 @@ final public class Ledger {
 
     @Getter
     final private Journal journal = new Journal();
+    @Getter
     final private ChartOfAccounts coa;
 
     public Ledger(ChartOfAccounts coa) {

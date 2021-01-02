@@ -1,0 +1,13 @@
+entry_type	account_id	account_name	increase_side	transaction_date	debit_account_ids debit_account_amounts credit_account_ids credit_account_amounts
+ACCOUNT	A	checking	DEBIT
+ACCOUNT	X	income	DEBIT
+
+
+ACCOUNT	L	expenses	CREDIT
+
+# This is a comment
+ACCOUNT	E	equity	CREDIT
+ACCOUNT	R	revenue	CREDIT
+
+TRANSACTION				2011-12-03T10:15:30-05:00	X,L	200.15,100.10	A	300.25
+
