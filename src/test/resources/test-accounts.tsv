@@ -1,0 +1,11 @@
+entry_type	account_id	account_name	increase_side	transaction_date	debit_account_ids debit_account	_amounts credit_account_ids credit_account_amounts
+ACCOUNT	AST_0001	checking	DEBIT
+ACCOUNT	EXP_0001	income	DEBIT
+
+
+ACCOUNT	LIA_0001	expenses	CREDIT
+
+# This is a comment
+ACCOUNT	EQU_0001	equity	CREDIT
+ACCOUNT	REV_0001	revenue	CREDIT
+

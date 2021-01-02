@@ -18,6 +18,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class AccountingTransaction {
     final private Set<AccountingEntry> entries;
 
+    @Getter
     final private long bookingDateTimestamp;
 
     @Getter
