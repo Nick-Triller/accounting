@@ -73,7 +73,7 @@ checking account      | income
   you credit it.
 
 
-### Example #2: Your pay your monthly Netflix bill.
+### Example #2: You pay your monthly Netflix bill.
 ```
  Debit                | Credit
 ----------------------+--------------
@@ -121,7 +121,7 @@ their current net worth.
 
 See Example #4.
 
-### Example #6: You want track taxes withheld from your paycheck an expense.
+### Example #6: You want to track taxes withheld from your paycheck an expense.
 
 
 ```
