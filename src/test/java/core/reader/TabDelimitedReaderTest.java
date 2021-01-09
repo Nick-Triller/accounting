@@ -23,14 +23,13 @@ class TabDelimitedReaderTest {
 
   @Test
   void testReadAccounts() {
-
+    // Arrange
     Reader x = new TabDelimitedReader("./src/test/resources/test-accounts.tsv");
-
     Ledger y = x.read();
-
+    // Act
     ChartOfAccounts coa = y.getCoa();
+    // Assert
     assertNotNull(coa);
-
     Map<String, AccountDetails> ys = coa.getAccountNumberToAccountDetails();
     Set<String> expectedAccountIds = Set.of(
         "AST_0001",
@@ -40,7 +39,6 @@ class TabDelimitedReaderTest {
         "REV_0001"
     );
     assertEquals(expectedAccountIds, ys.keySet());
-
     assertEquals(
         new AccountDetailsImpl("AST_0001", "checking", DEBIT),
         ys.get("AST_0001"));
@@ -56,42 +54,35 @@ class TabDelimitedReaderTest {
     assertEquals(
         new AccountDetailsImpl("REV_0001", "revenue", CREDIT),
         ys.get("REV_0001"));
-
   }
 
   @Test
   void testReadTransaction() {
-
+    // Arrange
     Reader x = new TabDelimitedReader("./src/test/resources/test-transactions.tsv");
-
+    // Act
     Ledger ledger = x.read();
+    // Assert
     Journal journal = ledger.getJournal();
-
     List<AccountingTransaction> transactions = journal.getTransactions();
     assertNotNull(transactions);
     assertEquals(1, transactions.size());
-
     AccountingTransaction t0 = transactions.get(0);
     assertEquals(1322925330000L, t0.getBookingDateTimestamp());
-
     Map<String, AccountingEntry> numberToEntry = t0
         .getEntries()
         .stream()
         .collect(Collectors.toMap(AccountingEntry::getAccountNumber, entry -> entry));
     assertEquals(3, numberToEntry.size());
-
     AccountingEntry e = numberToEntry.get("A");
     assertEquals(CREDIT, e.getAccountSide());
     assertEquals(new BigDecimal("300.25"), e.getAmount());
-
     e = numberToEntry.get("X");
     assertEquals(DEBIT, e.getAccountSide());
     assertEquals(new BigDecimal("200.15"), e.getAmount());
-
     e = numberToEntry.get("L");
     assertEquals(DEBIT, e.getAccountSide());
     assertEquals(new BigDecimal("100.10"), e.getAmount());
-
   }
 
 }
