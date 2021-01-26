@@ -29,13 +29,13 @@ public class TrialBalanceResult {
         checkNotNull(accounts);
         checkArgument(!accounts.isEmpty());
         accounts.forEach(
-                a -> accountDetailsToBalance.put(a.getAccountDetails(), a.getBalance())
+                a -> accountDetailsToBalance.put(a.getAccountDetails(), a.getRawBalance())
         );
         creationTimestamp = Instant.now().toEpochMilli();
         BigDecimal balance = accounts.stream()
                 .reduce(
                         BigDecimal.ZERO,
-                        (acc, next) -> acc.add(next.getBalance()),
+                        (acc, next) -> acc.add(next.getRawBalance()),
                         BigDecimal::add
                 );
         isBalanced = balance.equals(BigDecimal.ZERO);
