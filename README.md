@@ -11,8 +11,8 @@ String accountsReceivableAccountNumber = "000003";
 
 // Chart of accounts describes the available accounts
 ChartOfAccounts coa = ChartOfAccountsBuilder.create()
-        .addAccount(cashAccountNumber, "Cash", DEBIT)
-        .addAccount(checkingAccountNumber, "Checking", DEBIT)
+        .addAccount(cashAccountNumber, "Cash", CREDIT)
+        .addAccount(checkingAccountNumber, "Checking", CREDIT)
         .addAccount(accountsReceivableAccountNumber, "Accounts Receivable", DEBIT)
         .build();
 // Setup ledger
