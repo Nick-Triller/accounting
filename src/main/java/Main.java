@@ -6,6 +6,7 @@ import core.transaction.AccountingTransaction;
 
 import java.math.BigDecimal;
 
+import static core.account.AccountSide.CREDIT;
 import static core.account.AccountSide.DEBIT;
 
 public class Main {
@@ -16,8 +17,8 @@ public class Main {
 
         // Setup ledger
         ChartOfAccounts coa = ChartOfAccountsBuilder.create()
-                .addAccount(cashAccountNumber, "Cash", DEBIT)
-                .addAccount(checkingAccountNumber, "Checking", DEBIT)
+                .addAccount(cashAccountNumber, "Cash", CREDIT)
+                .addAccount(checkingAccountNumber, "Checking", CREDIT)
                 .addAccount(accountsReceivableAccountNumber, "Accounts Receivable", DEBIT)
                 .build();
         Ledger ledger = new Ledger(coa);
