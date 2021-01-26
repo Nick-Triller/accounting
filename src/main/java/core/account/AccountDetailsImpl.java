@@ -1,6 +1,7 @@
 package core.account;
 
 import com.google.common.base.MoreObjects;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import static com.google.common.base.Preconditions.checkArgument;
@@ -9,6 +10,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Represents an immutable account description.
  */
+@EqualsAndHashCode
 public final class AccountDetailsImpl implements AccountDetails {
 
     @Getter

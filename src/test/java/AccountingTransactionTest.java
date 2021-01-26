@@ -37,6 +37,7 @@ public class AccountingTransactionTest {
         assertThrows(IllegalArgumentException.class, act);
     }
 
+    @Test
     public void testInfo() {
         // Arrange
         Set<AccountingEntry> entries = new HashSet<>();
