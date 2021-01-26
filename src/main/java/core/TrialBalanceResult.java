@@ -7,6 +7,7 @@ import lombok.Getter;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.Comparator;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -19,7 +20,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public class TrialBalanceResult {
     final private Map<AccountDetails, BigDecimal> accountDetailsToBalance =
-            new TreeMap<>((o1, o2) -> o1.getAccountNumber().compareTo(o2.getAccountNumber()));
+            new TreeMap<>(Comparator.comparing(AccountDetails::getAccountNumber));
     final private long creationTimestamp;
     @Getter
     final private boolean isBalanced;
@@ -31,8 +32,12 @@ public class TrialBalanceResult {
                 a -> accountDetailsToBalance.put(a.getAccountDetails(), a.getBalance())
         );
         creationTimestamp = Instant.now().toEpochMilli();
-        BigDecimal balance = BigDecimal.ZERO;
-        accounts.forEach(a -> balance.add(a.getBalance()));
+        BigDecimal balance = accounts.stream()
+                .reduce(
+                        BigDecimal.ZERO,
+                        (acc, next) -> acc.add(next.getBalance()),
+                        BigDecimal::add
+                );
         isBalanced = balance.equals(BigDecimal.ZERO);
     }
 
